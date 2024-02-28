@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Título da página</title>
+</head>
+<script>
+  const buildComponent = (structure) => structure.join('');
+
+  const News = ({
+    title,
+    date,
+    time,
+    imageSrc
+  }) => {
+    return buildComponent([
+      `<h1>${title}</h1>`,
+      `<p>${date}</p>`,
+      `<p>${time}</p>`,
+      `<img src="${imageSrc}" alt="news 01">`,
+    ]);
+  };
+
+  const Form = () => {
+    return buildComponent([
+      `<form method="post" action="">`,
+      `<input type="text" required>`,
+      `<button type="submit">Enviar</button>`,
+      `</form>`,
+    ]);
+  };
+
+  const buildNews = () => {
+    const newsSet = [
+      {
+        title: 'O Alex é o mais novo front-end',
+        date: '04/03/2023',
+        time: '20:59h',
+        imageSrc: 'https://t3.ftcdn.net/jpg/03/18/60/62/360_F_318606217_Hk8jo2MVoI33SQOkYrfOF929J7JgIP0P.jpg'
+      },
+      {
+        title: 'Mais de mil atletas participam do VII JuniUEA',
+        date: '04/03/2023',
+        time: '20:59h',
+        imageSrc: './src/news_01.png'
+      },
+    ];
+
+    let newsContent = '';
+    newsSet.forEach(({ title, date, time, imageSrc }) => {
+      newsContent += News({ title, date, time, imageSrc });
+    })
+    return newsContent;
+  }
+
+  const buildHome = () => {
+    const components = [
+      buildNews(),
+      Form()
+    ]
+    const root = document.getElementById('root');
+    components.forEach((component) => root.innerHTML += component);
+  };
+
+  const fetchUrlContent = (url) => {
+    // URL of the website you want to fetch information from
+    // const url = 'https://www2.uea.edu.br/';
+  
+    // Fetch data from the URL
+    fetch(url)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.text(); // or response.json() if expecting JSON data
+      })
+      .then(data => {
+        // Manipulate the fetched data as needed
+        console.log(data);
+        const root = document.getElementById('root');
+        root.innerHTML += data;
+      })
+      .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+      });
+  }
+  fetchUrlContent('https://177.66.10.68:443');
+</script>
+
+<body id="root" onload=buildHome()>
+</body>
+
+</html>
