@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            width: 100%;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        form {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #000;
+            width: 60%;
+            height: max-content;
+            padding: 16px;
+        }
+    </style>
+</head>
+<body>
+    <form action="">
+        Nome
+        <input type="text">
+
+        Sexo
+        <span class="gender">
+            <input  id="gender-m" name="gender" type="radio">
+            <label for="gender-m">M</label>
+        </span>
+        
+        <span class="gender">
+            <input id="gender-f" name="gender" type="radio">
+            <label for="gender-f">F</label>
+        </span>
+
+        Email
+        <input type="text">
+
+        Contato
+        <input type="text">
+
+        Escolha um assunto
+        <input type="text">
+
+        Assunto
+        <textarea name="" id="" cols="30" rows="10"></textarea>
+
+        Contato
+        <input type="text">
+    </form>
+</body>
+</html>
